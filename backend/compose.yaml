@@ -1,0 +1,23 @@
+name: onetime_backend_dev
+
+volumes:
+  postgres:
+
+networks:
+  common:
+
+
+services:
+  postgres:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB={POSTGRES_DB:-onetime}
+      - POSTGRES_PASSWORD={POSTGRES_PASSWORD:-password}
+      - POSTGRES_USER={POSTGRES_USER:-user}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - common
