@@ -10,5 +10,6 @@ class User(
     @Column(nullable = false, unique = true) var email: String,
     @Column(nullable = false) var password: String,
     @Column(nullable = false) var isEmailVerified: Boolean = false,
+    @OneToMany(mappedBy = "user") var secrets: List<Secret> = mutableListOf(),
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long? = null
 ) : BaseEntity()
