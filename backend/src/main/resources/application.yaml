@@ -10,3 +10,9 @@ spring:
       ddl-auto: update
     open-in-view: false
 
+app:
+  security:
+    jwt:
+      secret-key: ${JWT_SECRET_KEY:otFkGpT9QX8VIXoh8bVGrC8RaCW+yBNlmoGLjJ0aAvE=}
+      access-token-validity: 900
+      refresh-token-validity: 10080

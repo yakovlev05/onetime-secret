@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import ru.yakovlev05.ots.backend.dto.exception.ErrorResponse
 import ru.yakovlev05.ots.backend.dto.exception.ValidationError
+import ru.yakovlev05.ots.backend.exception.BusinessException
 
 @RestControllerAdvice
 class GlobalExceptionHandler {
@@ -21,6 +22,15 @@ class GlobalExceptionHandler {
         return buildResponse(
             HttpStatus.INTERNAL_SERVER_ERROR,
             "Internal Server Error",
+            request.requestURI
+        )
+    }
+
+    @ExceptionHandler
+    fun handleBusinessException(ex: BusinessException, request: HttpServletRequest): ResponseEntity<ErrorResponse> {
+        return buildResponse(
+            ex.status,
+            ex.message,
             request.requestURI
         )
     }
@@ -48,7 +58,7 @@ class GlobalExceptionHandler {
 
     private fun buildResponse(
         status: HttpStatus,
-        message: String,
+        message: String?,
         path: String,
         validationErrors: List<ValidationError>? = null
     ): ResponseEntity<ErrorResponse> {
