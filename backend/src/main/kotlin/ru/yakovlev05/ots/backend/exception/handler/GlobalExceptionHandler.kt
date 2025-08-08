@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import ru.yakovlev05.ots.backend.dto.exception.ErrorResponse
 import ru.yakovlev05.ots.backend.dto.exception.ValidationError
-import ru.yakovlev05.ots.backend.exception.BusinessException
+import ru.yakovlev05.ots.backend.exception.base.BusinessException
 
 @RestControllerAdvice
 class GlobalExceptionHandler {
