@@ -35,6 +35,7 @@ class SecurityConfig {
             .authorizeHttpRequests {
                 it
                     .requestMatchers(*public).permitAll()
+                    .requestMatchers("/api/v1/secrets/**").permitAll()
                     .anyRequest().authenticated()
             }
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter::class.java)

@@ -18,7 +18,7 @@ import ru.yakovlev05.ots.backend.service.AuthenticationService
 import ru.yakovlev05.ots.backend.service.UserService
 
 @Service
-class AuthenticationService(
+class AuthenticationServiceImpl(
     private val userService: UserService,
     private val passwordEncoder: PasswordEncoder,
     private val jwtProvider: JwtProvider,
